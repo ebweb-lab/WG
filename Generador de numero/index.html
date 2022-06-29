@@ -1,48 +1,69 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>WG</title>
 	<!--CORE-->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+		integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 	<!--CSS SHEET COSTUM-->
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
 	<!--Form Start-->
 	<div class="container">
 		<div class="bk-main">
-	<form>
-		<div class="form-group m-3">
-    <label class="m-2" for="exampleFormControlInput1">Ingrese hasta que numero desea sacar los pares </label>
-    <input id="nvalor" type="number" class="form-control" id="exampleFormControlInput1" placeholder="Hasta que limite generar">
-  </div>
- 	<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Combinaciones</th>
-    </tr>
-  </thead>
-  <tbody >
-  	<tr>
-      <th>
-      	<td id="tbody">
-      		
-      	</td>
-      </th>
-    </tr>
-  </tbody>
-</table>
-  <div class="form-group m-3">
-  	<button  type="button" onclick="generar();" class="btn btn-primary m-2">Generar</button>
-  </div>
-</form>
+			<form>
+				<div class="form-group m-3">
+					<label class="m-2" for="exampleFormControlInput1">Ingrese hasta que numero desea sacar los pares
+					</label>
+					<input id="nvalor" type="number" class="form-control" id="exampleFormControlInput1"
+						placeholder="Hasta que limite generar">
+				</div>
+				<div class="form-group m-3">
+					<label class="m-2" for="exampleFormControlInput1">Ingrese la cantidad a combinar
+					</label>
+					<input id="nvalorAd" type="number" class="form-control" id="exampleFormControlInput1"
+						placeholder="Cantidad de pares a combinar">
+				</div>
+				<div class="form-check m-3">
+					<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+					<label class="form-check-label" for="exampleRadios1">
+					  Combinar a 2 elemento
+					</label>
+				  </div>
+				  <div class="form-check m-3 d-flex">
+					<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+					<label class="form-check-label" for="exampleRadios2">
+					  Combinar a 3 elemento
+					</label>
+				  </div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">CANTIDAD DE NUMEROS GENERADOS</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th id="tbody">
+
+							</th>
+						</tr>
+					</tbody>
+				</table>
+				<div class="form-group m-3">
+					<button type="button" onclick="generar();" class="btn btn-primary m-2">Generar</button>
+				</div>
+			</form>
 		</div>
 	</div>
 	<!--Form End-->
 	<!--script-->
 	<script src="assets/js/main.js" type="text/javascript" charset="utf-8" async defer></script>
 </body>
+
 </html>
