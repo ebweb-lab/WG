@@ -32,25 +32,25 @@
     var result = [].concat(...ar1.map( 
         (v, i) => ar1.slice(i+1).map( w => v + ',' + w ))
     );
+    const dduplicated = [];
+    for(var i = 0; i < result.length; i++) {
+ 
+  const elemento = result[i];
+ 
+  if (!dduplicated.includes(result[i])) {
+    dduplicated.push(elemento);
+  }
+}
 
     //Generar 3 combinaciones
-    let data = ar1.concat(paresAd);
 
-    const combinations = []
 
-    for(let i = 0; i < data.length -2; i++){
-      for(let j = i + 1; j < data.length -1; j++){
-        for(let k = j + 1; k < data.length; k++){
-           combinations.push([data[i],data[j],data[k]])
-        }
-        console.log(combinations)
-      }
-}
-  console.log(result);
-  console.log(result2);
+       console.log(dduplicated)
+    
+  //console.log(result);
     tabody.innerHTML+=`<td><p>Se ha generado ${pares.length} pares</p></td><br>
                        <td><p>Se ha generado ${paresAd.length} pares para combinar</p></td><br>
-                       <td><p>Se ha generado ${result.length} pares combinados </p></td><br>`;
+                       <td><p>Se ha generado ${dduplicated.length} pares combinados </p></td><br>`;
     }
      
     }
