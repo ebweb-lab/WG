@@ -30,17 +30,17 @@
 						placeholder="Cantidad de pares a combinar">
 				</div>
 				<div class="form-check m-3">
-					<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-					<label class="form-check-label" for="exampleRadios1">
-					  Combinar a 2 elemento
+					<input class="form-check-input" type="radio" name="checkbox" id="checkbox1" value="2" checked>
+					<label class="form-check-label" for="checkbox1">
+						Combinar a 2 elemento
 					</label>
-				  </div>
-				  <div class="form-check m-3 d-flex">
-					<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-					<label class="form-check-label" for="exampleRadios2">
-					  Combinar a 3 elemento
+				</div>
+				<div class="form-check m-3 d-flex">
+					<input class="form-check-input" type="radio" name="checkbox" id="checkbox2" value="3">
+					<label class="form-check-label" for="checkbox2">
+						Combinar a 3 elemento
 					</label>
-				  </div>
+				</div>
 				<table class="table">
 					<thead>
 						<tr>
@@ -55,15 +55,21 @@
 						</tr>
 					</tbody>
 				</table>
-				<div class="form-group m-3">
-					<button type="button" onclick="generar();" class="btn btn-danger mb-2 btn-block">Generar</button>
+				<div class="form-group p-2">
+					<button type="button" onclick="generar();" class="btn btn-danger btn-block">Generar</button>
+				</div>
+				<div class="form-group p-2">
+					<button id="btnexportar" type="button" onclick="exportTableToExcel();" class="btn btn-success">Exportar a Excel</button>
 				</div>
 			</form>
 		</div>
 	</div>
 	<!--Form End-->
 	<!--script-->
+	<script src="https://code.jquery.com/jquery-3.6.0.slim.js"
+		integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 	<script src="assets/js/main.js" type="text/javascript" charset="utf-8" async defer></script>
+	<script src="assets/js/xlsx.full.min.js"></script>
 </body>
 
 </html>
