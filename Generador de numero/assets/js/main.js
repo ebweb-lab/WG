@@ -1,4 +1,4 @@
-function generar () {
+const generar = () => {
   let element = document.getElementById('nvalor').value;
   let elementAd= document.getElementById('nvalorAd').value;
   let pares = [];
@@ -79,28 +79,23 @@ console.log(cartesian(pares, paresAd));
 console.log(cartesian(pares, paresAd,paresAd));
 }
     
-  
-  
-    
   //console.log(result);
     tabody.innerHTML+=`<td><p>Se ha generado ${pares.length} pares</p></td><br>
                        <td><p>Se ha generado ${paresAd.length} pares para combinar</p></td><br>`;
-    }
-     
-    }
 
-function exportTableToExcel(){
+    }
   var wb = XLSX.utils.book_new();
   wb.Props = {
-  Title: "PARES GENERADOS",
+  Title: "Numeros Pares Combinados",
   Subject: "Permutaciones",
   Author: "EBCODE",
-  CreatedDate: new Date(2022)
+  CreatedDate: new Date(2017,12,19)
   };
-  wb.SheetNames.push("Permutaciones");
-  var ws_data = [cartesian];
+  wb.SheetNames.push("Combinaciones Realizadas");
+  //var ws_data = [['hello, hola', 'world']];
+  var ws_data = [[cartesian]];
   var ws = XLSX.utils.aoa_to_sheet(ws_data);
-  wb.Sheets["Permutaciones"] = ws;
+  wb.Sheets["Combinaciones Realizadas"] = ws;
   var wbout = XLSX.write(wb, {bookType:'xlsx',  type: 'binary'});
   function s2ab(s) {
   var buf = new ArrayBuffer(s.length);
@@ -108,7 +103,9 @@ function exportTableToExcel(){
   for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
   return buf;
   }
-  $("btnexportar").click(function(){
-  saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'test.xlsx');
+  $("#btnexportar").click(function(){
+  saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'Numeros_Combinados.xlsx');
   });
-}
+     
+    }
+
