@@ -59,7 +59,11 @@ if(document.getElementById('checkbox1').checked){
     helper([], 0);
     return r;
 };
+
+
+
 console.log(cartesian(pares, paresAd));
+//console.log(cartesian(pares, paresAd));
 }else{
   function cartesian() {
     var r = [], arg = arguments, max = arg.length-1;
@@ -76,36 +80,79 @@ console.log(cartesian(pares, paresAd));
     helper([], 0);
     return r;
 };
+let testm = JSON.stringify(cartesian(pares, paresAd));
+
 console.log(cartesian(pares, paresAd,paresAd));
 }
-    
+ 
   //console.log(result);
     tabody.innerHTML+=`<td><p>Se ha generado ${pares.length} pares</p></td><br>
                        <td><p>Se ha generado ${paresAd.length} pares para combinar</p></td><br>`;
 
     }
-  var wb = XLSX.utils.book_new();
-  wb.Props = {
-  Title: "Numeros Pares Combinados",
-  Subject: "Permutaciones",
-  Author: "EBCODE",
-  CreatedDate: new Date(2017,12,19)
-  };
-  wb.SheetNames.push("Combinaciones Realizadas");
-  //var ws_data = [['hello, hola', 'world']];
-  var ws_data = [[cartesian]];
-  var ws = XLSX.utils.aoa_to_sheet(ws_data);
-  wb.Sheets["Combinaciones Realizadas"] = ws;
-  var wbout = XLSX.write(wb, {bookType:'xlsx',  type: 'binary'});
-  function s2ab(s) {
-  var buf = new ArrayBuffer(s.length);
-  var view = new Uint8Array(buf);
-  for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
-  return buf;
+
+    function convertToCSV(objArray) {
+ const array = typeof objArray != "object" ? JSON.parse(objArray) : objArray;
+ let str = "";
+for (let i = 0; i < array.length; i++) {
+  let line = "";
+  for (let index in array[i]) {
+   if (line != "") line += ".";
+line += array[i][index];
   }
-  $("#btnexportar").click(function(){
-  saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'Numeros_Combinados.xlsx');
-  });
+str += line + "\r\n";
+ }
+return str;
+}
+//let testm = JSON.stringify(cartesian(pares, paresAd));
+
+function exportCSVFile(headers, items, fileName) {
+ if (headers) {
+  items.unshift(headers);
+ }
+const jsonObject = JSON.stringify(items);
+const csv = convertToCSV(jsonObject);
+const exportName = fileName + ".csv" || "export.csv";
+const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+ if (navigator.msSaveBlob) {
+  navigator.msSaveBlob(blob, exportName);
+ } else {
+  const link = document.createElement("a");
+  if (link.download !== undefined) {
+   const url = URL.createObjectURL(blob);
+   link.setAttribute("href", url);
+   link.setAttribute("download", exportName);
+   link.style.visibility = "hidden";
+   document.body.appendChild(link);
+   link.click();
+   document.body.removeChild(link);
+  }
+ }
+}
+const headers = {
+    id: 'Combinaciones'
+};
+const data = [{
+        id: 1,
+        nombre: 'John Doe'
+    },
+    {
+        id: 2,
+        nombre: 'Juan'
+    },
+    {
+        id: 3,
+        nombre: 'Samanta'
+    }
+];
+
+//const limpiar =cartesian(paresAd, pares).replace(/^[,\s]+|[,\s]+$/g, '').replace(/,[,\s]*,/g, ',');
+exportCSVFile(headers, cartesian(pares, paresAd));
+
+    $("#btnexportar").click(
+
+      );
+  
      
     }
 
