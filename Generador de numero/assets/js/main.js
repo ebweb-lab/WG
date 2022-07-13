@@ -41,6 +41,49 @@ const generar = () => {
     dduplicated.push(elemento);
   }
 }
+//Generar y exportar
+function convertToCSV(objArray) {
+  const array = typeof objArray != "object" ? JSON.parse(objArray) : objArray;
+  let str = '';
+ for (let i = 0; i < array.length; i++) {
+   let line = ' ';
+   for (let index in array[i]) {
+    if (line != ' ') line += ',';
+ line += array[i][index];
+   }
+ str += line + "\r\n";
+  }
+ return str;
+ }
+ //let testm = JSON.stringify(cartesian(pares, paresAd));
+ 
+ function exportCSVFile(headers, items, fileName) {
+  if (headers) {
+   items.unshift(headers);
+  }
+ const jsonObject = JSON.stringify(items);
+ const csv = convertToCSV(jsonObject);
+ const exportName = fileName + ".csv" || "export.csv";
+ const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  if (navigator.msSaveBlob) {
+   navigator.msSaveBlob(blob, exportName);
+  } else {
+   const link = document.createElement("a");
+   if (link.download !== undefined) {
+    const url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", exportName);
+    link.style.visibility = "hidden";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+   }
+  }
+ }
+ const headers = {
+     id: 'Combinaciones'
+ };
+
 if(document.getElementById('checkbox1').checked){
 
   //Generar 2
@@ -63,6 +106,7 @@ if(document.getElementById('checkbox1').checked){
 
 
 console.log(cartesian(pares, paresAd));
+exportCSVFile(headers, cartesian(pares, paresAd), "Combinaciones Generadas");
 //console.log(cartesian(pares, paresAd));
 }else{
   function cartesian() {
@@ -80,9 +124,8 @@ console.log(cartesian(pares, paresAd));
     helper([], 0);
     return r;
 };
-let testm = JSON.stringify(cartesian(pares, paresAd));
-
 console.log(cartesian(pares, paresAd,paresAd));
+exportCSVFile(headers, cartesian(pares, paresAd, paresAd), "Combinaciones Generadas");
 }
  
   //console.log(result);
@@ -91,63 +134,7 @@ console.log(cartesian(pares, paresAd,paresAd));
 
     }
 
-    function convertToCSV(objArray) {
- const array = typeof objArray != "object" ? JSON.parse(objArray) : objArray;
- let str = "";
-for (let i = 0; i < array.length; i++) {
-  let line = "";
-  for (let index in array[i]) {
-   if (line != "") line += ".";
-line += array[i][index];
-  }
-str += line + "\r\n";
- }
-return str;
-}
-//let testm = JSON.stringify(cartesian(pares, paresAd));
-
-function exportCSVFile(headers, items, fileName) {
- if (headers) {
-  items.unshift(headers);
- }
-const jsonObject = JSON.stringify(items);
-const csv = convertToCSV(jsonObject);
-const exportName = fileName + ".csv" || "export.csv";
-const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
- if (navigator.msSaveBlob) {
-  navigator.msSaveBlob(blob, exportName);
- } else {
-  const link = document.createElement("a");
-  if (link.download !== undefined) {
-   const url = URL.createObjectURL(blob);
-   link.setAttribute("href", url);
-   link.setAttribute("download", exportName);
-   link.style.visibility = "hidden";
-   document.body.appendChild(link);
-   link.click();
-   document.body.removeChild(link);
-  }
- }
-}
-const headers = {
-    id: 'Combinaciones'
-};
-const data = [{
-        id: 1,
-        nombre: 'John Doe'
-    },
-    {
-        id: 2,
-        nombre: 'Juan'
-    },
-    {
-        id: 3,
-        nombre: 'Samanta'
-    }
-];
-
-//const limpiar =cartesian(paresAd, pares).replace(/^[,\s]+|[,\s]+$/g, '').replace(/,[,\s]*,/g, ',');
-exportCSVFile(headers, cartesian(pares, paresAd));
+    
 
     $("#btnexportar").click(
 
@@ -155,4 +142,3 @@ exportCSVFile(headers, cartesian(pares, paresAd));
   
      
     }
-
